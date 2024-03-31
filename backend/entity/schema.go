@@ -4,7 +4,6 @@ import (
 	"time"
 
 	"github.com/asaskevich/govalidator"
-	unit "github.com/chadawan9913/sa-lab4-66/AppData/Roaming/Code/User/History/5d60e7a8"
 	"gorm.io/gorm"
 )
 
@@ -33,6 +32,13 @@ type Gender struct {
 	Member []Member
 }
 
+type Role struct {
+	gorm.Model
+	Name string `gorm:"unique"`
+
+	Member []Member
+}
+
 type Address struct {
 	gorm.Model
 	Address  string `valid:"required~Address is required"`
@@ -40,7 +46,7 @@ type Address struct {
 	Province string `valid:"required~Province is required"`
 	Postcode string `valid:"required~Postcode is required"`
 
-	MemberID *uint    `valid:"-"`
+	MemberID *uint  `valid:"-"`
 	Member   Member `gorm:"references:id" valid:"-"`
 }
 
@@ -50,7 +56,7 @@ type Order struct {
 	Date        time.Time
 	Quantity    int `valid:"required~Quantity is required, range(1|10)~Quantity should be between 1 and 10"`
 
-	MemberID uint      `valid:"-"`
+	MemberID uint    `valid:"-"`
 	Member   *Member `gorm:"references:id" valid:"-"`
 
 	MenuID uint  `valid:"-"`
@@ -85,6 +91,9 @@ type Payment struct {
 	Time       time.Time
 	SlipImage  string
 
+	DeliveryID uint `valid:"-"`
+	Delivery   *Delivery
+
 	BankTypeID uint `valid:"-"`
 	BankType   *BankType
 
@@ -100,6 +109,13 @@ type BankType struct {
 	BankName string `gorm:"unique"`
 
 	BankType []BankType `gorm:"foreignKey:BankTypeID"`
+}
+
+type Delivery struct {
+	gorm.Model
+	Name string `gorm:"unique"`
+
+	Delivery []Delivery `gorm:"foreignKey:DeliveryID"`
 }
 
 func init() {
