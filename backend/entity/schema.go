@@ -3,7 +3,8 @@ package entity
 import (
 	"time"
 
-	"github.com/asaskevich/govalidator"
+	// "github.com/asaskevich/govalidator"
+	// unit "github.com/chadawan9913/sa-lab4-66/AppData/Roaming/Code/User/History/5d60e7a8"
 	"gorm.io/gorm"
 )
 
@@ -118,9 +119,3 @@ type Delivery struct {
 	Delivery []Delivery `gorm:"foreignKey:DeliveryID"`
 }
 
-func init() {
-	govalidator.CustomTypeTagMap.Set("isPositive", govalidator.CustomTypeValidator(func(i interface{}, context interface{}) bool {
-		n := i.(int)
-		return n > 0
-	}))
-}
