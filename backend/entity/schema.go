@@ -14,6 +14,7 @@ type Member struct {
 	Lastname  string `valid:"required~LastName is required"`
 	Phone     string `valid:"required~Phone number is required,stringlength(10|10)~Phone must be at 10 characters"`
 	Email     string `gorm:"uniqueIndex" valid:"required~Email is required, email~Email is invalid"`
+	Profile   string `gorm:"type:longtext"`
 	Password  string `valid:"required~Password is required, stringlength(8|100)~Password ต้องมากกว่า 7 แต่น้อยกว่า 100 ตัว"`
 
 	GenderID uint
@@ -33,12 +34,12 @@ type Gender struct {
 	Member []Member
 }
 
-type Role struct {
-	gorm.Model
-	Name string `gorm:"unique"`
+// type Role struct {
+// 	gorm.Model
+// 	Name string `gorm:"unique"`
 
-	Member []Member
-}
+// 	Member []Member
+// }
 
 type Address struct {
 	gorm.Model
@@ -72,7 +73,7 @@ type Order struct {
 type Menu struct {
 	gorm.Model
 	MenuName  string
-	MenuCost  string
+	MenuCost  float32
 	MenuImage string `gorm:"type:longtext"`
 
 	MenuTypeID uint `valid:"-"`
@@ -118,4 +119,3 @@ type Delivery struct {
 
 	Delivery []Delivery `gorm:"foreignKey:DeliveryID"`
 }
-
