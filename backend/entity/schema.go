@@ -14,6 +14,7 @@ type Customer struct {
 	Lastname  string `valid:"required~LastName is required"`
 	Phone     string `valid:"required~Phone number is required,stringlength(10|10)~Phone must be at 10 characters"`
 	Email     string `gorm:"uniqueIndex" valid:"required~Email is required, email~Email is invalid"`
+	Profile   string `gorm:"type:longtext"`
 	Password  string `valid:"required~Password is required, stringlength(8|100)~Password ต้องมากกว่า 7 แต่น้อยกว่า 100 ตัว"`
 
 	GenderID uint
