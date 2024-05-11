@@ -19,13 +19,13 @@ func SetupDatabase() {
 	}
 
 	database.AutoMigrate(
-		&Member{},
+		&Customer{},
 	)
 db = database
 
 	password, _ := bcrypt.GenerateFromPassword([]byte("admin12345"), 14)
 
-	db.Model(&Member{}).Create(&Member{
+	db.Model(&Customer{}).Create(&Customer{
 		Firstname:      "admin",
 		Lastname:       "admin",
 		Email:          "admin@admin.admin",
