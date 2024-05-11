@@ -8,7 +8,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type Member struct {
+type Customer struct {
 	gorm.Model
 	Firstname string `valid:"required~FirstName is required"`
 	Lastname  string `valid:"required~LastName is required"`
@@ -30,15 +30,15 @@ type Gender struct {
 	gorm.Model
 	TypeName string `gorm:"unique"`
 
-	Member []Member
+	Customer []Customer
 }
 
-type Role struct {
-	gorm.Model
-	Name string `gorm:"unique"`
+// type Role struct {
+// 	gorm.Model
+// 	Name string `gorm:"unique"`
 
-	Member []Member
-}
+// 	Member []Member
+// }
 
 type Address struct {
 	gorm.Model
@@ -47,8 +47,8 @@ type Address struct {
 	Province string `valid:"required~Province is required"`
 	Postcode string `valid:"required~Postcode is required"`
 
-	MemberID *uint  `valid:"-"`
-	Member   Member `gorm:"references:id" valid:"-"`
+	CustomerID *uint  `valid:"-"`
+	Customer   Customer `gorm:"references:id" valid:"-"`
 }
 
 type Order struct {
@@ -57,8 +57,8 @@ type Order struct {
 	Date        time.Time
 	Quantity    int `valid:"required~Quantity is required, range(1|10)~Quantity should be between 1 and 10"`
 
-	MemberID uint    `valid:"-"`
-	Member   *Member `gorm:"references:id" valid:"-"`
+	CustomerID *uint  `valid:"-"`
+	Customer   Customer `gorm:"references:id" valid:"-"`
 
 	MenuID uint  `valid:"-"`
 	Munu   *Menu `gorm:"references:id" valid:"-"`
@@ -71,9 +71,10 @@ type Order struct {
 
 type Menu struct {
 	gorm.Model
-	MenuName  string
+	MenuName  string `valid:"required~MenuName is required"`
 	MenuCost  string
 	MenuImage string `gorm:"type:longtext"`
+	Details  string `valid:"required~Details is required"`
 
 	MenuTypeID uint `valid:"-"`
 	MunuType   *MenuType
@@ -101,8 +102,8 @@ type Payment struct {
 	OrderID uint `valid:"-"`
 	Order   *Order
 
-	MemberID uint `valid:"-"`
-	Member   *Member
+	CustomerID uint `valid:"-"`
+	Customer   *Customer
 }
 
 type BankType struct {
@@ -117,5 +118,22 @@ type Delivery struct {
 	Name string `gorm:"unique"`
 
 	Delivery []Delivery `gorm:"foreignKey:DeliveryID"`
+}
+
+type Rating struct {
+	gorm.Model
+
+	// Dateandtime time.Time
+	Rate        float64 
+	Description string  `gorm:"type:longtext"`
+	Status      string  `gorm:"type:longtext"`
+	//เพิ่มว่าใครเป็นคนรีวิว
+	CustomerID *uint  `valid:"-"`
+	Customer   Customer `gorm:"references:id" valid:"-"`
+
+	MenuID *uint
+	Menu   Menu `gorm:"references:id"`
+	OrderID   *uint
+	Order     Order `gorm:"references:id"`
 }
 
