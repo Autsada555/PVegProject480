@@ -11,7 +11,7 @@ import (
 func TestMemberfail(t *testing.T) {
 	g := NewGomegaWithT(t)
 	t.Run(`ต้องมากกว่า 7 แต่น้อยกว่า 100 ตัว`, func(t *testing.T) {
-		member := entity.Member{
+		member := entity.Customer{
 			Firstname:      "John",
 			Lastname:       "John",
 			Email:          "john@example.com",
@@ -27,7 +27,7 @@ func TestMemberfail(t *testing.T) {
 	})
 
 	t.Run(`Email is invalid`, func(t *testing.T) {
-		member := entity.Member{
+		member := entity.Customer{
 			Firstname: "John",
 			Lastname:  "John",
 			Email:     "john", //email wrong
@@ -47,7 +47,7 @@ func TestMemberfail(t *testing.T) {
 func TestAllMember(t *testing.T) {
 	g := NewGomegaWithT(t)
 	t.Run(`All correct`, func(t *testing.T) {
-		member := entity.Member{
+		member := entity.Customer{
 			Firstname:      "John",
 			Lastname:       "John",
 			Email:          "john@example.com",
