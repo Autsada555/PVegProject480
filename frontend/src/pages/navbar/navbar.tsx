@@ -12,22 +12,22 @@ const Navbar = () => {
 
                     <nav className="flex space-x-12 ">
                         <div>
-                            <div>
+                            <div className="relative">
                                 <input
                                     type="text"
                                     placeholder="search..."
-                                    className="w-[900px] px-4 py-2 rounded border border-gray-300 focus:outline-none focus:border-blue-500"
+                                    className="w-[900px] px-4 py-2 pr-10 rounded border border-gray-300 focus:outline-none focus:border-blue-500"
+                                    style={{ paddingRight: '40px' }}
                                 />
-                                <img className="absolute left-[1070px] top-7 w-8 h-8 " src ={iconsearch} alt = "iconS"/>
+                                <img className="absolute right-0 top-0 mt-2 mr-3 w-6 h-6" src={iconsearch} alt="iconS" />
                             </div>
+
                         </div>
                         <a href="#" className="text-white text-xl font-normal font-['Inter'] leading-9">Home</a>
                         <a href="#" className="text-white text-xl font-normal font-['Inter'] leading-9">Menu</a>
                         <a href="#" className="text-white text-xl font-normal font-['Inter'] leading-9">About</a>
                         <a href="#" className="text-white text-xl font-normal font-['Inter'] leading-9">Contract</a>
-                        <div>
-                            <img className="absolute right-0 top-3 w-12 h-12 mr-4 mt-2" src={iconprofile} alt="iconP" />
-                        </div>
+                        <a href="#"><img  className="absolute right-0 top-3 w-12 h-12 mr-4 mt-2" src={iconprofile} alt="iconP" /></a>
                     </nav>
 
                 </div>

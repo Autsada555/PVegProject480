@@ -5,6 +5,7 @@ export function Addmenu() {
     return (
         <>
         <Navbar/>
+        
         </>
     )
 }
