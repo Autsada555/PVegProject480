@@ -7,7 +7,7 @@ import './App.css';
 import { Login } from './pages/login/Login';
 import { Addmenu } from './pages/admin/Addmenu';
 import { Homepage } from './pages/homepage/homepage';
-import { Customer } from './pages/customer/Customer';
+import { Customer } from './pages/admin/Customer';
 
 
 
